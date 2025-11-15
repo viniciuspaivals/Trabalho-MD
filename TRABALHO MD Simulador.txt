@@ -1,0 +1,30 @@
+TRABALHO MD: Simulador de Gerenciamento de Rotas
+DUPLA: Miguel e Vinícius
+LINGUAGEM: Java
+
+ 	Programa em Java que simula um sistema para gerenciar e analisar rotas. A aplicação deve usar estruturas de dados para representar conjuntos e relações, implementar funções para manipular os dados, aplicar recursão para resolver problemas complexos e usar análise combinatória para calcular possibilidades.
+
+ARQUIVO ENTRADA: intancia.txt
+12
+1 5
+4 6
+7 5
+5 4
+9 4
+2 3
+4 2
+6 2
+1 1
+5 1
+3 0
+9 0
+
+-> Primeiro, o número de cidades do problema e em seguida, as coordenadas x e y de cada cidade.
+
+ 	O programa pode ter uma interface simples de linha de comando (ou interface gráfica) que interage
+com o usuário para:
+• Definir os pontos de interesse: defina um conjunto, contendo um array de inteiros para os elementos e o tamanho atual. Assim, o programa pode inicializar um conjunto de pontos de interesse.
+• Criar conexões entre eles: use a teoria de relações para descrever a conectividade entre os pontos de interesse (vértices de um grafo). Uma relação binária 𝑅 pode ser definida (𝑢,𝑣) ∈ 𝑅, se existe uma conexão entre o ponto 𝑢 e o ponto 𝑣. Pode se utilizar uma matriz de adjacência ou lista de adjacência. Assim, o usuário entra com as conexões, definindo a relação entre os pontos (pode ser através do arquivo de entrada).
+• Especificar um ponto de partida e um de chegada: O usuário informa um ponto de partida e um de chegada.
+• Chamar a função recursiva para encontrar e exibir as rotas: implemente um algoritmo para encontrar todas as rotas possíveis entre dois pontos ou para resolver o problema do "caixeiro viajante" (TSP): Assim, o programa executa uma busca recursiva, mostrando as possíveis rotas.
+• Calcular e mostrar o número de permutações e combinações para um conjunto de eventos: Calcule o número de maneiras de organizar eventos em uma rota. Por exemplo, quantas ordens de visitação existem para 𝑛 eventos (use a função fatorial)? Assim, o usuário pode solicitar o número de maneiras de visitar 3 de 5 cidades, e o programa usará as funções de análise combinatória para exibir o resultado
