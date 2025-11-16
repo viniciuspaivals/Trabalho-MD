@@ -1,10 +1,10 @@
 public class Cidade {
-    private int id;
-    private int x;
-    private int y;
+    private int id; //TODAS AS CIDADES POSSUEM UM ID INDIVIDUAL
+    private int x;  //COORDENADA - EIXO DAS ABSCISSAS
+    private int y; //COORDENADA - EIXO DAS ORDENADAS
 
     @Override
-    public String toString(){
+    public String toString(){ //METODO toString - IMPRIME AS INFORMAÇÕES GERAIS DE TODAS INSTÂNCIA CRIADA DA CLASSE CIDADE
         return "C" + id + "(" + x + "," + y + ")";
     }
 
