@@ -1,17 +1,16 @@
-public class Main {
+class Main{
     public static void main(String[] args) {
 
         int opcao = -1;
         while (opcao != 6) {
             try {
                 GerenciadorDeRotas.exibirMenu();
-                if (GerenciadorDeRotas.consoleScanner.hasNextLine()) {
-                    String input = GerenciadorDeRotas.consoleScanner.nextLine();
-                    if (input.isEmpty()) continue;
-                    opcao = Integer.parseInt(input);
-                } else {
-                    break; // Fim da entrada
-                }
+
+                String input = GerenciadorDeRotas.consoleScanner.nextLine().trim();
+
+                if (input.isEmpty()) continue;
+
+                opcao = Integer.parseInt(input);
 
                 switch (opcao) {
                     case 1:
@@ -21,19 +20,17 @@ public class Main {
                         GerenciadorDeRotas.criarConexoes();
                         break;
                     case 3:
-                        System.out.println("Funcionalidade 3 em desenvolvimento...");
-                        // chamar encontrarRotas();
+                        GerenciadorDeRotas.encontrarRotas();
                         break;
                     case 4:
-                        System.out.println("Funcionalidade 4 em desenvolvimento...");
-                        // chamar tspRecursivo();
+                        //resolverTSP(); // CHAMADA DA FUNÇÃO TSP
                         break;
                     case 5:
-                        System.out.println("Funcionalidade 5 em desenvolvimento...");
-                        // chamar funcoesCombinatorias();
+                        GerenciadorDeRotas.analiseCombinatoria();
                         break;
                     case 6:
                         System.out.println("Saindo do simulador. Até logo!");
+                        GerenciadorDeRotas.consoleScanner.close();
                         break;
                     default:
                         System.out.println("Opção inválida. Tente novamente.");
@@ -43,4 +40,5 @@ public class Main {
             }
         }
     }
+
 }

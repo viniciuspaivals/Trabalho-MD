@@ -1,4 +1,4 @@
-public class Cidade {
+public class Cidade { //MODELO USADO
     private int id; //TODAS AS CIDADES POSSUEM UM ID INDIVIDUAL
     private int x;  //COORDENADA - EIXO DAS ABSCISSAS
     private int y; //COORDENADA - EIXO DAS ORDENADAS
@@ -15,7 +15,6 @@ public class Cidade {
         this.x = x;
         this.y = y;
     }
-
     //GETTERS
     public int getId(){return this.id;}
     public int getX(){return this.x;}
