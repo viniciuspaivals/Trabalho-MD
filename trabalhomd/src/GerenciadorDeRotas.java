@@ -226,7 +226,68 @@ public class GerenciadorDeRotas { //PERSISTENCIA
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    //FAZER CAIXEIRO VIAJANTE
+    public static void tsp(){
+        int[] permutacao = new int[numCidades]; //CAMINHO QUE VAI SER TESTADO
+        for (int i = 0; i < numCidades; i++) permutacao[i] = i; //INICIA O PRIMEIRO CAMINHO A SER TESTADO COMO: [1, 2, 3, 4, ..., 12]
+
+        int[] melhorRota = permutacao.clone(); //INICIA O VETOR RESPONSÁVEL POR ARMAZENAR O MELHOR CAMINHO
+        double custoMelhorRota = Double.POSITIVE_INFINITY; //ELEMENTO NEUTRO DA COMPARAÇÃO DE MENOR
+
+        do { //LOOP QUE VERIFICA CADA PERMUTAÇÃO POSSIVEL DO VETOR "PERMUTAÇAÕ" E CALCULA O CUSTO DE PERCORRER ESSE CAMINHO
+            double custoRota = calculaCustoRota(permutacao); //CALCULA O CUSTO DE PERCORRER AS CIDADES NA ORDEM CONTIDA EM "PERMUTAÇÃO"
+
+            if (custoRota < custoMelhorRota){ //ATUALIZA O VALOR DE MELHOR CAMINHO E O VALOR DE MENOR CUSTO SE ENCONTRAR UM CAMINHO MAIS CURTO
+                custoMelhorRota = custoRota;
+                melhorRota = permutacao.clone();
+            }
+        } while (proximaPermutacao(permutacao));
+
+        System.out.println("CAMINHO TSP\n[");
+        for (int i : melhorRota){           //IMPRIME O MELHOR CAMINHO ENCONTRADO
+            System.out.print((i+1) + " "); 
+        }
+        System.out.println("]\nCusto do caminho: " + calculaCustoRota(melhorRota)); //IMPRIME O CUSTO
+    }
+
+    public static double calculaCustoRota(int[] rota){
+        double custo = 0;
+    for (int i = 1; i < numCidades; i++){ //CALCULA O CUSTO DE PERCORRER CADA CIDADE NA ORDEM CONTIDA NO VETOR "ROTA"
+            int ini = rota[i-1];
+            int fim = rota[i];
+            custo += calcularDistancia(ini, fim);
+        }
+
+        int last = rota[numCidades - 1];
+        int first = rota[0];
+        return custo + calcularDistancia(first, last); //CALCULA O CUSTO DE VOLTAR DA ÚLTIMA CIDADE DO VETOR PARA A CIDADE INICIAL
+    }
+
+    public static boolean proximaPermutacao(int[] seq){ //PROCURA A PRÓXIMA PERMUTAÇÃO DE CAMINHOS A SER ANALISADA
+        int first = getFirst(seq);      //OLHA O VETOR DO FIM PARA O INÍCIO E PROCURA O PRIMEIRO ELEMENTO QUE É MENOR QUE O VALOR NA SUA FRENTE
+        if (first == -1) return false;  // SE getFirst RETORNAR -1 SIGNIFICA QUE TODAS AS PERMUTAÇÕES JÁ FORAM VISTAS
+        int i_troca = seq.length - 1;   //PEGA O ÚLTIMO ELEMENTO DA SEQUÊNCIA. "i_troca" É O VALOR QUE SERÁ TROCADO COM O VALOR "first"
+
+        while (seq[first] >= seq[i_troca]) --i_troca;  //PROCURA NO VETOR seq O PRIMEIRO ELEMENTO MENOR QUE O ELEMENTO ESCOLHIDO PARA SER O first
+
+        troca(seq, first++, i_troca);    //TROCA O i_troca COM first PARA GERAR O PRÓXIMO CAMINHO QUE VAI SER ANALISADO E AUMENTA O VALOR DE first EM 1
+        i_troca = seq.length - 1;
+
+        while (first < i_troca) troca(seq, first++, i_troca--);   //INVERTE TODOS OS NÚMEROS MAIORES COM OS MENORES ENTRE O first E O i_troca ORIGINAL
+        return true;
+    }
+
+    private static int getFirst(int[] seq){
+        for (int i = seq.length - 2; i >= 0; i--){ //OLHA O VETOR DO FIM PARA O INÍCIO E PROCURA O PRIMEIRO ELEMENTO QUE É MENOR QUE O VALOR NA SUA FRENTE
+            if (seq[i] < seq[i + 1]) return i;
+        }
+        return -1;
+    }
+
+    private static void troca(int[] seq, int i, int j){
+        int t = seq[i];
+        seq[i] = seq[j];
+        seq[j] = t;
+    }
 
     public static void imprimirGrafo(){
         if(numCidades == 0){

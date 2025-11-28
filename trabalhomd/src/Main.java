@@ -33,6 +33,7 @@ class Main {
                     case 4:
                         // PASSA O SCANNER COMO PARÂMETRO
                         //CAIXEIRO VIAJANTE
+                        GerenciadorDeRotas.tsp();
                         break;
                     case 5:
                         // PASSA O SCANNER COMO PARÂMETRO
